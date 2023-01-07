@@ -21,7 +21,7 @@ phases:
     commands:
       - echo Build completed 
       - echo Pushing the Docker images...
-      - docker push 034359045621.dkr.ecr.us-east-1.amazonaws.com/newvickyrepo
+      - docker push vickyfirsttask:latest 034359045621.dkr.ecr.ap-southeast-1.amazonaws.com/vickydocker
 artifacts:
   files:
     - Dockerfile
