@@ -15,7 +15,7 @@ phases:
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 034359045621.dkr.ecr.us-east-1.amazonaws.com/newvickyrepo
       - echo Building the Docker image...          
       - docker build -t vickyfirsttask:latest .
-      - docker tag 034359045621.dkr.ecr.us-east-1.amazonaws.com/newvickyrepo:latest
+      - docker tag vickyfirsttask:latest 034359045621.dkr.ecr.us-east-1.amazonaws.com/newvickyrepo:latest
   post_build:
     commands:
       - echo Build completed 
