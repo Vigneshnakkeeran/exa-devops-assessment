@@ -1,0 +1,28 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+       java: corretto11
+    commands:
+      - echo Entered the install phase...
+      - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2 &
+      - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
+  pre_build:
+    commands:
+      - echo Entered the build phase...
+      - echo Build started 
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 034359045621.dkr.ecr.us-east-1.amazonaws.com/newvickyrepo
+      - echo Building the Docker image...          
+      - docker build -t vickyfirsttask:latest .
+      - docker tag vickyfirsttask:latest 034359045621.dkr.ecr.ap-southeast-1.amazonaws.com/vickydocker
+      - docker run -itd --name vickytask -p "3000:3000" vickyfirsttask:latest
+  post_build:
+    commands:
+      - echo Build completed 
+      - echo Pushing the Docker images...
+      - docker push 034359045621.dkr.ecr.us-east-1.amazonaws.com/newvickyrepo
+artifacts:
+  files:
+    - Dockerfile
+  discard-paths: yes
