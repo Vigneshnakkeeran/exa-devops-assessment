@@ -15,13 +15,12 @@ phases:
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 034359045621.dkr.ecr.us-east-1.amazonaws.com/newvickyrepo
       - echo Building the Docker image...          
       - docker build -t vickyfirsttask:latest .
-      - docker tag vickyfirsttask:latest 034359045621.dkr.ecr.us-east-1.amazonaws.com/newvickyrepo
-      - docker run -itd --name vickytask -p "3000:3000" vickyfirsttask:latest
+      - docker tag 034359045621.dkr.ecr.us-east-1.amazonaws.com/newvickyrepo:latest
   post_build:
     commands:
       - echo Build completed 
       - echo Pushing the Docker images...
-      - docker push vickyfirsttask:latest 034359045621.dkr.ecr.us-east-1.amazonaws.com/newvickyrepo
+      - docker push 034359045621.dkr.ecr.us-east-1.amazonaws.com/newvickyrepo:latest
 artifacts:
   files:
     - Dockerfile
