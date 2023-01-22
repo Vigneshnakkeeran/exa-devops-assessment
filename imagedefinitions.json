@@ -1,6 +1,6 @@
 [
   {
-    "name": "nodejscontainer",
-    "imageUri": "090019403361.dkr.ecr.us-east-1.amazonaws.com/taskrepository:latest"
+    "name": "taskcontainer",
+    "imageUri": "090019403361.dkr.ecr.us-east-1.amazonaws.com/taskregistry:latest"
   }
 ]
