@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # Start the application
-node index.js
+exec node index.js
