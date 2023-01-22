@@ -16,8 +16,14 @@ COPY . .
 # Expose the port that the application will run on
 EXPOSE 3000
 
-# Set the entrypoint command
-ENTRYPOINT ["/bin/bash", "-c"]
+# Copy the entrypoint script
+COPY entrypoint.sh /usr/local/bin/
+
+# Make the script executable
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# Set the entrypoint script as the default command to run
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
 # Start the application
-CMD ["node index.js & sleep infinity"]
+CMD ["npm start"]
