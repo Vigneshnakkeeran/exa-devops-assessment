@@ -12,15 +12,15 @@ phases:
       - echo Entered the build phase...
       - echo Build started 
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 090019403361.dkr.ecr.us-east-1.amazonaws.com/taskrepository
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 090019403361.dkr.ecr.us-east-1.amazonaws.com/taskregistry
       - echo Building the Docker image...          
       - docker build -t sampletask:latest .
-      - docker tag sampletask:latest 090019403361.dkr.ecr.us-east-1.amazonaws.com/taskrepository:latest
+      - docker tag sampletask:latest 090019403361.dkr.ecr.us-east-1.amazonaws.com/taskregistry:latest
   post_build:
     commands:
       - echo Build completed 
       - echo Pushing the Docker images...
-      - docker push 090019403361.dkr.ecr.us-east-1.amazonaws.com/taskrepository:latest
+      - docker push 090019403361.dkr.ecr.us-east-1.amazonaws.com/taskregistry:latest
 artifacts:
   files:
     - Dockerfile
