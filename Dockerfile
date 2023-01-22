@@ -20,4 +20,4 @@ EXPOSE 3000
 ENTRYPOINT ["/bin/bash", "-c"]
 
 # Start the application
-CMD ["npm start"]
+CMD ["node index.js & sleep infinity"]
